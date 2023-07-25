@@ -56,9 +56,7 @@
 		name: 'chouJiang',
 		data() {
 			return {
-				show: true,
-				tst1: true,
-				tst2: 2,
+				show: false,
 				openLoading: false
 			}
 		},
@@ -159,7 +157,7 @@
 							.numTip {
 								text-align: center;
 								padding-bottom: 50rpx;
-								padding-top: 60rpx;
+								padding-top: 30rpx;
 							}
 							
 							.num {
@@ -170,9 +168,10 @@
 							}
 							
 							.status {
-								padding-top: 50rpx;
+								padding-top: 60rpx;
 								text-align: center;
 								color: #4a4b43;
+								font-size: 30rpx;
 								
 								.sts2 {
 									color: #FF0000;
