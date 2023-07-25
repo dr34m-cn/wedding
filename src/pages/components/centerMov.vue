@@ -12,15 +12,15 @@
 					<view class="right">豆瓣电影Top520 ＞</view>
 				</view>
 				<view style="font-size: 19rpx;">中国/剧情 爱情 / 2023-8-6<br />2023年上映/片长1314分钟</view>
-				<view class="btns" @click="clickWant">
-					<view class="btn">
-						<image :src="want" class="img" mode="widthFix"></image>
+				<view class="btns">
+					<button class="btn" @click="clickWant">
+						<u-icon name="heart" color="#b89b4f" size="19" class="icon"></u-icon>
 						<view>想看</view>
-					</view>
-					<view class="btn btn2">
-						<image :src="had" class="img" mode="widthFix"></image>
-						<view>看过</view>
-					</view>
+					</button>
+					<button class="btn btn2" open-type="share">
+						<u-icon name="share" color="#b89b4f" size="19" class="icon"></u-icon>
+						<view>分享</view>
+					</button>
 				</view>
 			</view>
 		</view>
@@ -59,8 +59,6 @@
 		name: 'centerMov',
 		data() {
 			return {
-				want: require('@/static/want.png'),
-				had: require('@/static/had.png'),
 				stars5: require('@/static/stars5.png'),
 				stars: require('@/static/stars.png'),
 				muc: require('@/static/muc.gif')
@@ -144,19 +142,20 @@
 					align-items: center;
 					color: #000000;
 					font-weight: bold;
-					font-size: 26rpx;
 					margin-top: 18rpx;
 
 					.btn {
 						background-color: #ffffff;
-						padding: 10rpx 50rpx;
+						width: 180rpx;
+						height: 60rpx;
 						border-radius: 10rpx;
+						font-size: 26rpx;
+						text-align: center;
 						display: flex;
 						align-items: center;
 						justify-content: center;
 
-						.img {
-							width: 36rpx;
+						.icon {
 							margin-right: 8rpx;
 						}
 					}
