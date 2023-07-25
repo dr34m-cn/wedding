@@ -70,7 +70,8 @@
         "usingComponents" : true
     },
     "mp-qq" : {
-        "usingComponents" : true
+        "usingComponents" : true,
+        "appid" : "1112315712"
     },
     "h5" : {
         "title" : "标题",

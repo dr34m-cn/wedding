@@ -71,10 +71,26 @@
 		},
 		methods: {
 			pageTo() {
+				// #ifdef MP-WEIXIN || H5
 				uni.pageScrollTo({
 					selector: "#addr",
 					duration: 300
 				});
+				// #endif
+				// #ifdef MP-QQ
+				uni.pageScrollTo({
+					duration: 0,
+					scrollTop: 0,
+					success() {
+						uni.createSelectorQuery().select("#addr").boundingClientRect((res) => {
+							uni.pageScrollTo({
+								duration: 0,
+								scrollTop: res.top
+							})
+						}).exec()
+					}
+				})
+				// #endif
 			},
 			handStart() {
 				this.$u.vuex('vuex_hangStopFlag', false);
@@ -113,6 +129,9 @@
 		height: 100%;
 		overflow: hidden;
 
+		#addr {
+			position: relative;
+		}
 
 		.msc {
 			position: fixed;
@@ -170,7 +189,7 @@
 			background-repeat: no-repeat;
 			background-size: 150rpx auto;
 		}
-		
+
 		.github {
 			text-align: center;
 			font-size: 16rpx;
