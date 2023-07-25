@@ -12,7 +12,7 @@ try {
 }
 
 // 需要永久存储，且下次APP启动需要取出的，在state中的变量名
-let saveStateKeys = ['vuex_hangStopFlag'];
+let saveStateKeys = ['vuex_hangStopFlag', 'vuex_hadGetCj', 'vuex_cjData', 'vuex_userInfo'];
 
 // 保存变量到本地存储中
 const saveLifeData = function(key, value) {
@@ -36,7 +36,18 @@ const store = new Vuex.Store({
 		vuex_mucAuther: '찬열/펀치',
 		vuex_mucDetail: '词：지훈，曲：이승주/로코베리',
 		vuex_hangStopFlag: lifeData.vuex_hangStopFlag ? lifeData.vuex_hangStopFlag : false,
-		vuex_mucFlag: false
+		vuex_mucFlag: false,
+		// vuex_hadGetCj: lifeData.vuex_hadGetCj ? lifeData.vuex_hadGetCj : false,
+		vuex_hadGetCj: lifeData.vuex_hadGetCj ? lifeData.vuex_hadGetCj : true,
+		// vuex_cjData: lifeData.vuex_cjData ? lifeData.vuex_cjData : null,
+		vuex_cjData: lifeData.vuex_cjData ? lifeData.vuex_cjData : {
+			num: 'A001',
+			status: '2'
+		},
+		// vuex_userInfo: lifeData.vuex_userInfo ? lifeData.vuex_userInfo : null
+		vuex_userInfo: lifeData.vuex_userInfo ? lifeData.vuex_userInfo : {
+			avatar: 'https://cdn.uviewui.com/uview/album/1.jpg'
+		}
 	},
 	mutations: {
 		$uStore(state, payload) {

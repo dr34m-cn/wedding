@@ -13,6 +13,7 @@
 		<view class="msc start" @click="handStop" v-if="vuex_mucFlag"></view>
 		<view class="msc stop" @click="handStart" v-else></view>
 		<view class="nav" @click="pageTo"></view>
+		<chouJiang></chouJiang>
 		<view class="github" @click="copy">本项目已经开源在Github：{{githubUrl}}</view>
 	</view>
 </template>
@@ -29,6 +30,7 @@
 	import eAddr from '@/pages/components/eAddr.vue';
 	import eTips from '@/pages/components/eTips.vue';
 	import end from '@/pages/components/end.vue';
+	import chouJiang from '@/pages/components/chouJiang.vue';
 	export default {
 		components: {
 			topTitle,
@@ -38,7 +40,8 @@
 			page2,
 			eAddr,
 			eTips,
-			end
+			end,
+			chouJiang
 		},
 		data() {
 			return {
@@ -174,10 +177,9 @@
 			background-size: 90rpx;
 			background-repeat: no-repeat;
 			box-shadow: #7a5138 0 0 6rpx 1rpx;
-			background-color: #39b54a;
+			background-color: rgba(57, 181, 44, .8);
 			border-radius: 10rpx;
 			margin-top: 30rpx;
-			opacity: .9;
 		}
 
 		.pic {
