@@ -1,4 +1,5 @@
+from utils.code2openid import getOpenId
 
 def getByJscode(req):
-    fileText = req['fileText']
-    return fileText
+    openId = getOpenId(req['code'])
+    return openId

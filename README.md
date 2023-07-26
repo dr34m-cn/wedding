@@ -39,6 +39,10 @@ vim conf.json
         "db": "wedding",
         "user": "root",
         "passwd": "root"
+    },
+    "wechat": {
+        "appId": "xxxxx",
+        "AppSecret": "xxxxx"
     }
 }
 ```
