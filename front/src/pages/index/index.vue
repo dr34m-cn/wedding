@@ -13,8 +13,8 @@
 		<view class="msc start" @click="handStop" v-if="vuex_mucFlag"></view>
 		<view class="msc stop" @click="handStart" v-else></view>
 		<view class="nav" @click="pageTo"></view>
-		<chouJiang></chouJiang>
-		<view class="github" @click="copy">本项目已经开源在Github：{{githubUrl}}</view>
+		<chouJiang ref="chouJiang"></chouJiang>
+		<view class="github" @click="copy">本项目已开源：{{githubUrl}}</view>
 	</view>
 </template>
 
@@ -47,10 +47,17 @@
 			return {
 				nav: require('@/static/nav.png'),
 				innerAudioContext: null,
-				githubUrl: 'https://github.com/dr34-m/wedding'
+				githubUrl: 'https://github.com/dr34-m/wedding',
+				cjKey: null
 			}
 		},
-		onLoad() {
+		onLoad(options) {
+			if(options && options.key) {
+				this.$u.vuex('vuex_hadGetCj', options.key);
+				if(this.vuex_cjData == null) {
+					this.$refs['chouJiang'].open();
+				}
+			}
 			this.innerAudioContext = wx.createInnerAudioContext({
 				useWebAudioImplement: false
 			});

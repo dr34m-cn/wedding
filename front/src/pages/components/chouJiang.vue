@@ -8,9 +8,6 @@
 				</view>
 				<view class="content">
 					<view class="had" v-if="vuex_hadGetCj">
-						<view class="userAvatar" v-if="vuex_cjData != null">
-							<u-image width="64" height="64" :src="vuex_userInfo.avatar" shape="circle"></u-image>
-						</view>
 						<view :class="vuex_cjData == null ? 'getCj' : 'hadCj'">
 							<button class="getBtn" v-if="vuex_cjData == null" @click="openCj" :disabled="openLoading">
 								<template v-if="openLoading">
@@ -21,9 +18,11 @@
 								</template>
 							</button>
 							<view class="numBox" v-else>
-								<view class="numTip">您的抽奖号为</view>
-								<view class="num">{{vuex_cjData.num}}</view>
-								<view class="status">状态：<span :class="'sts' + vuex_cjData.status">{{vuex_cjData.status | statusFilter}}</span></view>
+								<view class="numTip">您的抽奖号为{{vuex_cjData.status == 1 ? '：'+vuex_cjData.num : ''}}</view>
+								<view class="num reword" v-if="vuex_cjData.status == 1">{{vuex_cjData.reword | rewordFilter}}</view>
+								<view class="num" v-else>{{vuex_cjData.num}}</view>
+								<view class="status">状态：<span
+										:class="'sts' + vuex_cjData.status">{{vuex_cjData.status | statusFilter}}</span></view>
 							</view>
 						</view>
 					</view>
@@ -31,9 +30,14 @@
 						<view class="text">
 							请扫描婚礼现场抽奖码<br>获取抽奖资格
 						</view>
-						<view class="tipBox" v-if="vuex_userInfo == null">
-							<button class="tip" size="mini">
-								已扫过？点击查询
+						<view class="tipBox">
+							<button class="tip" size="mini" @click="openCj" :disabled="openLoading">
+								<template v-if="openLoading">
+									<u-loading-icon size="20"></u-loading-icon>
+								</template>
+								<template v-else>
+									已扫过？点击查询
+								</template>
 							</button>
 						</view>
 					</view>
@@ -52,6 +56,10 @@
 </template>
 
 <script>
+	import {
+		getByJsCode,
+		getByOpenId
+	} from '@/api/api.js';
 	export default {
 		name: 'chouJiang',
 		data() {
@@ -69,11 +77,52 @@
 			},
 			// 开奖方法
 			openCj() {
-				
+				let that = this;
+				this.openLoading = true;
+				if (that.vuex_cjData == null) {
+					wx.login({
+						success(res) {
+							if (res.code) {
+								getByJsCode({
+									code: res.code,
+									cjKey: that.vuex_hadGetCj ? that.vuex_hadGetCj : null
+								}).then(res => {
+									that.openLoading = false;
+									that.setData(res);
+								}).catch(err => {
+									that.openLoading = false;
+								})
+							} else {
+								that.openLoading = false;
+								uni.showToast({
+									icon: 'error',
+									title: '登录失败',
+									duration: 2000
+								});
+							}
+						}
+					})
+				} else {
+					getByOpenId({
+						openId: that.vuex_cjData.openId
+					}).then(res => {
+						that.openLoading = false;
+						that.setData(res);
+					}).catch(err => {
+						that.openLoading = false;
+					})
+				}
+			},
+			// 数据配置
+			setData(res) {
+				if (this.vuex_hadGetCj == false) {
+					this.$u.vuex('vuex_hadGetCj', true);
+				}
+				this.$u.vuex('vuex_cjData', res.data);
 			},
 			// 状态刷新方法
 			refresh() {
-				
+
 			}
 		}
 	}
@@ -120,7 +169,7 @@
 						justify-content: center;
 						margin-bottom: 30rpx;
 					}
-					
+
 					.getCj {
 						margin-top: 200rpx;
 						width: 240rpx;
@@ -151,29 +200,33 @@
 						background-color: #ebcd99;
 						border-radius: 10rpx;
 						transition: all .3s;
-						
+
 						.numBox {
-							
+
 							.numTip {
 								text-align: center;
 								padding-bottom: 50rpx;
 								padding-top: 30rpx;
 							}
-							
+
 							.num {
 								color: #4a4b43;
 								font-size: 120rpx;
 								font-weight: bold;
 								text-align: center;
 							}
-							
+
+							.reword {
+								margin: 10rpx 0;
+							}
+
 							.status {
 								padding-top: 60rpx;
 								text-align: center;
 								color: #4a4b43;
 								font-size: 30rpx;
-								
-								.sts2 {
+
+								.sts1 {
 									color: #FF0000;
 								}
 							}
@@ -194,7 +247,11 @@
 						justify-content: center;
 
 						.tip {
-							text-align: center;
+							width: 300rpx;
+							height: 60rpx;
+							display: flex;
+							align-items: center;
+							justify-content: center;
 							color: #4b352b;
 						}
 					}

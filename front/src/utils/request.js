@@ -12,11 +12,6 @@ module.exports = (vm) => {
 	uni.$u.http.interceptors.request.use((config) => { // 可使用async await 做异步操作
 		// 初始化请求拦截器时，会执行此方法，此时data为undefined，赋予默认{}
 		config.data = config.data || {}
-		// 根据custom参数中配置的是否需要token，添加对应的请求头
-		if (!config.url.startsWith('/login') && vm.vuex_token) {
-			// 可以在此通过vm引用vuex中的变量，具体值在vm.$store.state中
-			config.header.token = vm.vuex_token
-		}
 		return config
 	}, config => { // 可使用async await 做异步操作
 		return Promise.reject(config)

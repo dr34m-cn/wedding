@@ -1,27 +1,37 @@
 import json
 
 import urllib3
-from common.commonService import get_logger as GL, get_post_data as GD, ResultMap as RS
-from service import weddingService
 from tornado import httpserver
 from tornado.ioloop import IOLoop
 from tornado.web import Application, RequestHandler
 
+from common import commonService as CS
+from service import weddingService
 
-class getByJscode(RequestHandler):
+
+class getByJsCode(RequestHandler):
     def post(self):
         try:
-            req = GD(self)
-            msg = RS(weddingService.getByJscode(req))
+            req = CS.get_post_data(self)
+            msg = CS.ResultMap(weddingService.getByJscode(req))
         except Exception as e:
-            msg = RS(str(e), 500)
+            msg = CS.ResultMap(str(e), 500)
+        self.write(msg)
+
+class getByOpenId(RequestHandler):
+    def post(self):
+        try:
+            req = CS.get_post_data(self)
+            msg = CS.ResultMap(weddingService.getByOpenId(req))
+        except Exception as e:
+            msg = CS.ResultMap(str(e), 500)
         self.write(msg)
 
 if __name__ == "__main__":
 
     urllib3.disable_warnings()
 
-    GL(1)
+    CS.get_logger(1)
 
     with open('conf.json','r') as fileConf:
         conf = json.loads(fileConf.read())
@@ -30,7 +40,8 @@ if __name__ == "__main__":
     port = conf['server']['port']
 
     app = Application([
-        (r"/getByJscode", getByJscode)
+        (r"/getByJsCode", getByJsCode),
+        (r"/getByOpenId", getByOpenId)
     ])
 
     # 单线程启动
