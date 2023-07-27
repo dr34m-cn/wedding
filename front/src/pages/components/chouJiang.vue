@@ -21,8 +21,15 @@
 								<view class="numTip">您的抽奖号为{{vuex_cjData.status == 1 ? '：'+vuex_cjData.num : ''}}</view>
 								<view class="num reword" v-if="vuex_cjData.status == 1">{{vuex_cjData.reword | rewordFilter}}</view>
 								<view class="num" v-else>{{vuex_cjData.num}}</view>
-								<view class="status">状态：<span
-										:class="'sts' + vuex_cjData.status">{{vuex_cjData.status | statusFilter}}</span></view>
+								<view class="status">
+									状态：
+									<span :class="'sts' + vuex_cjData.status">
+										{{vuex_cjData.status | statusFilter}}
+									</span>
+									<view v-if="openLoading" style="padding-left: 18rpx;">
+										<u-loading-icon color="#999999"></u-loading-icon>
+										</view>
+								</view>
 							</view>
 						</view>
 					</view>
@@ -65,15 +72,23 @@
 		data() {
 			return {
 				show: false,
-				openLoading: false
+				openLoading: false,
+				timer: null
 			}
 		},
 		methods: {
 			open() {
 				this.show = true;
+				this.refresh();
+				this.timer = setInterval(() => {
+					this.refresh();
+				}, 4799);
 			},
 			close() {
 				this.show = false;
+				if (this.timer) {
+					clearInterval(this.timer);
+				}
 			},
 			// 开奖方法
 			openCj() {
@@ -122,7 +137,9 @@
 			},
 			// 状态刷新方法
 			refresh() {
-
+				if (this.vuex_cjData != null && this.vuex_cjData.status == 0) {
+					this.openCj();
+				}
 			}
 		}
 	}
@@ -222,9 +239,11 @@
 
 							.status {
 								padding-top: 60rpx;
-								text-align: center;
+								padding-left: 140rpx;
 								color: #4a4b43;
 								font-size: 30rpx;
+								display: flex;
+								align-items: center;
 
 								.sts1 {
 									color: #FF0000;

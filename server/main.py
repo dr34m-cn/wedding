@@ -45,16 +45,16 @@ if __name__ == "__main__":
     ])
 
     # 单线程启动
-    app.listen(port)
+    # app.listen(port)
     
-    IOLoop.current().start()
+    # IOLoop.current().start()
 
 
     # 多线程启动（必须Linux系统下启动）
     # 线程数
-    # thread = conf['server']['thread']
-    # http_server = httpserver.HTTPServer(app)
-    # http_server.bind(port)
-    # http_server.start(thread)
+    thread = conf['server']['thread']
+    http_server = httpserver.HTTPServer(app)
+    http_server.bind(port)
+    http_server.start(thread)
 
-    # IOLoop.instance().start()
+    IOLoop.instance().start()

@@ -66,6 +66,8 @@ python3 main.py
 vim /etc/systemd/system/wedding.service
 ```
 
+注意把下边的设置应用的工作目录与Python3目录修改为自己真实的
+
 ```shell
 [Unit]
 Description=weddingServer
@@ -75,9 +77,8 @@ Type=simple
 User=root
 Group=root
 
-#设置应用的工作目录与Python3目录，注意修改为自己实际的
-WorkingDirectory=/usr/local/app/wedding
-ExecStart=/usr/local/svc/python3/bin/python3 /usr/local/app/wedding/main.py
+WorkingDirectory=/opt/python
+ExecStart=/usr/bin/python3 /opt/python/main.py
 Restart=always
 ExecStop=/bin/kill -s TERM $MAINPID
 

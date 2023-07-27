@@ -6,7 +6,7 @@ keyInit = withMysql.getStatus()['key']
 
 def getByJscode(req):
     openId = utilTools.getOpenId(req['code'])
-    cjKey = req['cjKey']
+    cjKey = req['cjKey'] if 'cjKey' in req else None
     return getByOpenId({
         "openId": openId,
         "cjKey": cjKey
@@ -15,7 +15,7 @@ def getByJscode(req):
 
 def getByOpenId(req):
     openId = req['openId']
-    cjKey = req['cjKey']
+    cjKey = req['cjKey'] if 'cjKey' in req else None
     user = withMysql.getByOpenId(openId)
     if user is None:
         if cjKey is None:
