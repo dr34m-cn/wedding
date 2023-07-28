@@ -1,5 +1,5 @@
-from service.withMysql import getStatus
+from service.withMysql import getAll
 
 
 if __name__ == '__main__':
-    getStatus()
+    print(getAll())

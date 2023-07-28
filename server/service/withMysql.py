@@ -1,4 +1,5 @@
 from common import commonService
+from utils import utilTools
 
 
 # 获取key及状态
@@ -44,10 +45,28 @@ def newUser(openId):
     return lastId
 
 # 更新中奖状态
-def updateStatus(openId, reword):
+def updateStatus(userId, reword):
     conn = commonService.connect_mysql()
     cursor = conn.cursor()
-    cursor.execute("update userlist set `status` = 1, `reword` = %s where openId = %s", (reword, openId))
+    cursor.execute("update userlist set `status` = 1, `reword` = %s where id = %s", (reword, userId))
     conn.commit()
     cursor.close()
     conn.close()
+
+# 获取所有抽奖号
+def getAll():
+    conn = commonService.connect_mysql()
+    cursor = conn.cursor()
+    cursor.execute("select id, status, reword from userList")
+    rst = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    userList = []
+    for item in rst:
+        userList.append({
+            "id": item[0],
+            "status": item[1],
+            "reword": item[2],
+            "num": utilTools.getNumById(item[0])
+        })
+    return userList
