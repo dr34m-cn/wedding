@@ -1,0 +1,35 @@
+{
+  "name": "Front",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vue-cli-service serve --mode development",
+    "build:dev": "vue-cli-service build --mode development",
+    "serve": "vue-cli-service serve --mode production",
+    "build": "vue-cli-service build --mode production"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "core-js": "^3.6.5",
+    "element-ui": "2.15.8",
+    "js-cookie": "^3.0.1",
+    "underscore": "^1.13.4",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.17",
+    "@vue/cli-plugin-router": "~4.5.17",
+    "@vue/cli-plugin-vuex": "~4.5.17",
+    "@vue/cli-service": "~4.5.17",
+    "sass": "1.32.13",
+    "sass-loader": "^10.3.1",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

@@ -2,14 +2,24 @@
 
 ![小程序码](./gh_60249ca18280_344.jpg)
 
-## 前端
+## 微信端（front）
 
 ```shell
 npm install
 npm run serve
 ```
 
-更多详见uniapp文档
+更多详见[uniapp文档](https://zh.uniapp.dcloud.io/worktile/CLI.html)
+
+
+## PC端（pc）
+
+```shell
+npm install
+npm run serve
+```
+
+更多详见[通用前端框架文档](https://github.com/dr34-m/front-demo)
 
 ## 后端
 

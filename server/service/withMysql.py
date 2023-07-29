@@ -6,13 +6,14 @@ from utils import utilTools
 def getStatus():
     conn = commonService.connect_mysql()
     cursor = conn.cursor()
-    cursor.execute("select `status`,`key` from `conf` where id = %s", (1))
+    cursor.execute("select `status`,`key`,frontKey from `conf` where id = %s", (1))
     rst = cursor.fetchone()
     cursor.close()
     conn.close()
     return {
         "status": rst[0],
-        "key": rst[1]
+        "key": rst[1],
+        "frontKey": rst[2]
     }
 
 # 获取当前用户信息

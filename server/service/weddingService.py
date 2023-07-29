@@ -2,7 +2,9 @@ from utils import utilTools
 from service import withMysql
 
 
-keyInit = withMysql.getStatus()['key']
+status = withMysql.getStatus()
+keyInit = status['key']
+frontKey = status['frontKey']
 
 def getByJscode(req):
     openId = utilTools.getOpenId(req['code'])
@@ -32,4 +34,21 @@ def getByOpenId(req):
             raise Exception("抽奖码有误")
     user['num'] = utilTools.getNumById(user['num'])
     return user
-        
+
+def getAllUser(req):
+    checkFrKey(req)
+    return withMysql.getAll()
+
+
+def setUserStatus(req):
+    checkFrKey(req)
+    userId = req['userId']
+    reword = req['reword']
+    withMysql.updateStatus(userId, reword)
+    return None
+
+
+def checkFrKey(req):
+    frKey = req['frKey']
+    if frKey != frontKey:
+        raise Exception("秘钥有误")
