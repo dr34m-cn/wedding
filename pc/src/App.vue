@@ -115,7 +115,7 @@
 				centerShow: false,
 				currentShow: [],
 				allOver: false,
-				hadShow: true
+				hadShow: false
 			};
 		},
 		created() {
