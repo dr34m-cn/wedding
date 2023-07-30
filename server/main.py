@@ -45,6 +45,15 @@ class setUserStatus(RequestHandler):
             msg = CS.ResultMap(str(e), 500)
         self.write(msg)
 
+class resetAllStatus(RequestHandler):
+    def post(self):
+        try:
+            req = CS.get_post_data(self)
+            msg = CS.ResultMap(weddingService.resetAllStatus(req))
+        except Exception as e:
+            msg = CS.ResultMap(str(e), 500)
+        self.write(msg)
+
 if __name__ == "__main__":
 
     urllib3.disable_warnings()
@@ -61,7 +70,8 @@ if __name__ == "__main__":
         (r"/getByJsCode", getByJsCode),
         (r"/getByOpenId", getByOpenId),
         (r"/get/getAllUser", getAllUser),
-        (r"/get/setUserStatus", setUserStatus)
+        (r"/get/setUserStatus", setUserStatus),
+        (r"/get/resetAllStatus", resetAllStatus)
     ])
 
     # 单线程启动

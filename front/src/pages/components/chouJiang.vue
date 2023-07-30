@@ -28,7 +28,7 @@
 									</span>
 									<view v-if="openLoading" style="padding-left: 18rpx;">
 										<u-loading-icon color="#999999"></u-loading-icon>
-										</view>
+									</view>
 								</view>
 							</view>
 						</view>
@@ -80,14 +80,11 @@
 			open() {
 				this.show = true;
 				this.refresh();
-				this.timer = setInterval(() => {
-					this.refresh();
-				}, 4799);
 			},
 			close() {
 				this.show = false;
 				if (this.timer) {
-					clearInterval(this.timer);
+					clearTimeout(this.timer);
 				}
 			},
 			// 开奖方法
@@ -137,8 +134,17 @@
 			},
 			// 状态刷新方法
 			refresh() {
-				if (this.vuex_cjData != null && this.vuex_cjData.status == 0) {
+				if (this.vuex_cjData != null) {
 					this.openCj();
+				}
+				if (this.vuex_cjData != null && this.vuex_cjData.status != 0) {
+					this.timer = setTimeout(() => {
+						this.refresh();
+					}, 4799 * 5);
+				} else {
+					this.timer = setTimeout(() => {
+						this.refresh();
+					}, 4799);
 				}
 			}
 		}

@@ -23,6 +23,8 @@ const rewordFilter = (value) => {
 			return '三等奖';
 		case '4':
 			return '幸运奖';
+		case '5':
+			return '额外奖';
 		default:
 			return '状态异常';
 	}

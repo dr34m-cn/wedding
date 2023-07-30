@@ -42,9 +42,14 @@ def getAllUser(req):
 
 def setUserStatus(req):
     checkFrKey(req)
-    userId = req['userId']
+    userIds = req['userIds']
     reword = req['reword']
-    withMysql.updateStatus(userId, reword)
+    withMysql.updateStatus(userIds, reword)
+    return None
+
+def resetAllStatus(req):
+    checkFrKey(req)
+    withMysql.resetAll()
     return None
 
 

@@ -1,5 +1,6 @@
 from common import commonService
 from utils import utilTools
+import json
 
 
 # 获取key及状态
@@ -46,10 +47,22 @@ def newUser(openId):
     return lastId
 
 # 更新中奖状态
-def updateStatus(userId, reword):
+def updateStatus(userIds, reword):
     conn = commonService.connect_mysql()
     cursor = conn.cursor()
-    cursor.execute("update userlist set `status` = 1, `reword` = %s where id = %s", (reword, userId))
+    execSql = "update userList set `status` = 1, `reword` = %s where id in %s"%(reword, "("+userIds+")")
+    cursor.execute(execSql)
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+# 重置抽奖
+def resetAll():
+    jsonText = json.dumps(getAll())
+    conn = commonService.connect_mysql()
+    cursor = conn.cursor()
+    cursor.execute("insert into backJson(jsonText) values(%s)", jsonText)
+    cursor.execute("update userList set `status` = 0, `reword` = 0")
     conn.commit()
     cursor.close()
     conn.close()
