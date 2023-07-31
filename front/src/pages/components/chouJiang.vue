@@ -112,6 +112,14 @@
 									duration: 2000
 								});
 							}
+						},
+						fail(err) {
+							that.openLoading = false;
+							uni.showToast({
+								icon: 'error',
+								title: '请在微信小程序中打开',
+								duration: 2000
+							});
 						}
 					})
 				} else {

@@ -20,7 +20,7 @@ const rewordFilter = (value) => {
 		case '2':
 			return '二等奖';
 		case '3':
-			return '三等奖';
+			return '阳光普照奖';
 		case '4':
 			return '幸运奖';
 		case '5':
