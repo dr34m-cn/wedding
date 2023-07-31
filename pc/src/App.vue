@@ -60,25 +60,37 @@
 		<div :class="'hadShow' + (hadShow ? '' : ' unShow')">
 			<div class="hadItem" v-if="userGet1.length > 0">
 				<div class="itemTitle">一等奖</div>
-				<div class="item listItem" v-for="item in userGet1">{{item.num}}</div>
+				<div class="list">
+					<div class="item listItem" v-for="item in userGet1">{{item.num}}</div>
+				</div>
 			</div>
 			<div class="hadItem" v-if="userGet2.length > 0">
 				<div class="itemTitle">二等奖</div>
-				<div class="item listItem" v-for="item in userGet2">{{item.num}}</div>
+				<div class="list">
+					<div class="item listItem" v-for="item in userGet2">{{item.num}}</div>
+				</div>
 			</div>
 			<div class="hadItem" v-if="userGet3.length > 0">
 				<div class="itemTitle">三等奖</div>
-				<div class="item listItem" v-for="item in userGet3">{{item.num}}</div>
+				<div class="list">
+					<div class="item listItem" v-for="item in userGet3">{{item.num}}</div>
+				</div>
 			</div>
 			<div class="hadItem" v-if="userGet4.length > 0">
 				<div class="itemTitle">幸运奖</div>
-				<div class="item listItem" v-for="item in userGet4">{{item.num}}</div>
+				<div class="list">
+					<div class="item listItem" v-for="item in userGet4">{{item.num}}</div>
+				</div>
 			</div>
 			<div class="hadItem" v-if="userGet5.length > 0">
 				<div class="itemTitle">额外奖</div>
-				<div class="item listItem" v-for="item in userGet5">{{item.num}}</div>
+				<div class="list">
+					<div class="item listItem" v-for="item in userGet5">{{item.num}}</div>
+				</div>
 			</div>
-			<div class="noneData" v-if="userGet1.length < 1 && userGet2.length < 1 && userGet3.length < 1 && userGet4.length < 1 && userGet5.length < 1">暂无</div>
+			<div class="noneData"
+				v-if="userGet1.length < 1 && userGet2.length < 1 && userGet3.length < 1 && userGet4.length < 1 && userGet5.length < 1">
+				暂无</div>
 		</div>
 
 	</div>
@@ -198,26 +210,45 @@
 			// 未中奖数据处理
 			userNoDe() {
 				let userNTmp = JSON.parse(JSON.stringify(this.userNoForSelect));
-				let i = 0;
-				while (userNTmp.length < 17 * 7) {
-					userNTmp.push(JSON.parse(JSON.stringify(userNTmp[i])));
-					i = i + 1;
+				if (userNTmp.length > 0) {
+					let i = 0;
+					while (userNTmp.length < 17 * 7) {
+						userNTmp.push(JSON.parse(JSON.stringify(userNTmp[i])));
+						i = i + 1;
+					}
+				} else {
+					while (userNTmp.length < 17 * 7) {
+						userNTmp.push({
+							num: '❤'
+						});
+					}
 				}
 				this.userNoForShow = _.shuffle(userNTmp);
 			},
 			start() {
-				this.flag = !this.flag;
-				let that = this;
-				that.timer = setInterval(function() {
-					that.userNoDe();
-				}, 20);
+				if (this.userNoForSelect.length < 1) {
+					this.$message({
+						message: '已抽完所有号码',
+						type: 'error'
+					});
+				} else {
+					this.flag = !this.flag;
+					let that = this;
+					that.timer = setInterval(function() {
+						that.userNoDe();
+					}, 20);
+				}
 			},
 			stop() {
 				this.flag = !this.flag;
 				clearInterval(this.timer);
 				this.timer = null;
 				let cu = JSON.parse(JSON.stringify(this.userNoForSelect));
-				this.currentShow = _.shuffle(cu).slice(0, this.curSelect.num);
+				if (this.curSelect.num > cu.length) {
+					this.currentShow = cu;
+				} else {
+					this.currentShow = _.shuffle(cu).slice(0, this.curSelect.num);
+				}
 				let data = {
 					frKey: this.frKey,
 					reword: this.curSelect.type,
@@ -242,14 +273,14 @@
 			},
 			getNext() {
 				this.allOver = false;
-				if (this.userGet3.length < 10) {
+				if (this.userGet3.length < 30) {
 					this.curSelect = {
-						num: 10 - this.userGet3.length,
+						num: (30 - this.userGet3.length) < 10 ? 30 - this.userGet3.length : 10,
 						type: 3
 					}
-				} else if (this.userGet2.length < 5) {
+				} else if (this.userGet2.length < 3) {
 					this.curSelect = {
-						num: 5 - this.userGet2.length,
+						num: 3 - this.userGet2.length,
 						type: 2
 					}
 				} else if (this.userGet1.length < 1) {
@@ -264,7 +295,7 @@
 					}
 				} else {
 					this.curSelect = {
-						num: 1,
+						num: 10,
 						type: 5
 					}
 					this.allOver = true;
@@ -376,7 +407,7 @@
 			display: flex;
 			justify-content: center;
 			overflow: hidden;
-			transition: all .3s;
+			transition: all .1s;
 
 			.box {
 				.top {
@@ -417,34 +448,43 @@
 			top: 0;
 			bottom: 0;
 			background-color: rgba(255, 255, 255, .9);
-			transition: all .3s;
+			transition: all .1s;
 			padding: 0 120px;
 			overflow: hidden;
 
 			.hadItem {
 				display: flex;
 				justify-content: left;
-				align-items: center;
-				flex-wrap: wrap;
-				margin: 60px 0;
+				padding: 20px 0;
+				border-bottom: 1px dashed #8dc63f;
 
 				.itemTitle {
+					padding-top: 5px;
 					text-align: center;
 					color: #0081ff;
 					font-weight: bold;
-					font-size: 50px;
+					font-size: 40px;
 					margin-right: 40px;
+					min-width: 120px;
 				}
 
-				.listItem {
-					background-color: #e54d42;
-					margin: 10px;
-					width: 120px;
-					height: 80px;
-					font-size: 39px;
+				.list {
+					display: flex;
+					align-items: center;
+					flex-wrap: wrap;
+
+					.listItem {
+						background-color: #e54d42;
+						margin: 10px;
+						width: 96px;
+						height: 50px;
+						font-size: 30px;
+					}
 				}
+
+
 			}
-			
+
 			.noneData {
 				text-align: center;
 				color: #666;
