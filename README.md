@@ -24,10 +24,10 @@
 #### 大屏
 
 <div style="display:flex;align-item:center;flex-wrap:wrap;">
-<img src="./img/pc1.png" width="80%" style="margin:20px;"></img>
-<img src="./img/pc2.png" width="80%" style="margin:20px;"></img>
-<img src="./img/pc4.png" width="80%" style="margin:20px;"></img>
-<img src="./img/pc5.png" width="80%" style="margin:20px;"></img>
+<img src="./img/pc1.png" width="100%" style="margin:20px;"></img>
+<img src="./img/pc2.png" width="100%" style="margin:20px;"></img>
+<img src="./img/pc4.png" width="100%" style="margin:20px;"></img>
+<img src="./img/pc5.png" width="100%" style="margin:20px;"></img>
 </div>
 
 ## 微信端（front）
@@ -146,11 +146,11 @@ systemctl enable wedding
 
 ## 如对您产生了帮助请赞赏我，一分钱也是爱
 
-<img src="./img/zs.png" width="20%"></img>
+<img src="./img/zs.png" width="50%"></img>
 
 ## 如需定制开发可以联系我
 
-<img src="./img/wechat.png" width="20%"></img>
+<img src="./img/wechat.png" width="50%"></img>
 
 ## 附上完整邀请函截图
 
