@@ -15,19 +15,19 @@
 #### 小程序
 
 <div style="display:flex;align-item:center;flex-wrap:wrap;">
-<img src="./img/noScan.jpg" width="10%" style="margin:20px;"></img>
-<img src="./img/scan.jpg" width="10%" style="margin:20px;"></img>
-<img src="./img/getNum.jpg" width="10%" style="margin:20px;"></img>
-<img src="./img/reword.jpg" width="10%" style="margin:20px;"></img>
+<img src="./img/noScan.jpg" width="40%" style="margin:20px;"></img>
+<img src="./img/scan.jpg" width="40%" style="margin:20px;"></img>
+<img src="./img/getNum.jpg" width="40%" style="margin:20px;"></img>
+<img src="./img/reword.jpg" width="40%" style="margin:20px;"></img>
 </div>
 
 #### 大屏
 
 <div style="display:flex;align-item:center;flex-wrap:wrap;">
-<img src="./img/pc1.png" width="30%" style="margin:20px;"></img>
-<img src="./img/pc2.png" width="30%" style="margin:20px;"></img>
-<img src="./img/pc4.png" width="30%" style="margin:20px;"></img>
-<img src="./img/pc5.png" width="30%" style="margin:20px;"></img>
+<img src="./img/pc1.png" width="80%" style="margin:20px;"></img>
+<img src="./img/pc2.png" width="80%" style="margin:20px;"></img>
+<img src="./img/pc4.png" width="80%" style="margin:20px;"></img>
+<img src="./img/pc5.png" width="80%" style="margin:20px;"></img>
 </div>
 
 ## 微信端（front）
@@ -146,13 +146,13 @@ systemctl enable wedding
 
 ## 如对您产生了帮助请赞赏我，一分钱也是爱
 
-<img src="./img/zs.png" width="20%" style="margin:20px;"></img>
+<img src="./img/zs.png" width="20%"></img>
 
 ## 如需定制开发可以联系我
 
-<img src="./img/wechat.png" width="20%" style="margin:20px;"></img>
+<img src="./img/wechat.png" width="20%"></img>
 
 ## 附上完整邀请函截图
 
 
-<img src="./img/邀请函.png" width="50%" style="margin:20px;"></img>
+<img src="./img/邀请函.png" width="100%"></img>
