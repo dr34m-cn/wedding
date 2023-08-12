@@ -1,6 +1,34 @@
-扫码预览：
+### 这是一个婚礼用的请柬+大屏抽奖系统，由以下部分组成：
 
-![小程序码](./gh_60249ca18280_344.jpg)
+* 一个微信小程序实现婚礼邀请函与扫码获取抽奖码功能（UniApp + uViewUI）
+
+* 一个WEB大屏实现抽奖功能（Vue2.0 + ElementUI）
+
+* 一个后端负责逻辑处理（Python + MySQL）
+
+### 扫码预览（邀请函）：
+
+![小程序码](./img/小程序码.jpg)
+
+### 抽奖相关截图：
+
+#### 小程序
+
+<div style="display:flex;align-item:center;flex-wrap:wrap;">
+<img src="./img/noScan.jpg" width="10%" style="margin:20px;"></img>
+<img src="./img/scan.jpg" width="10%" style="margin:20px;"></img>
+<img src="./img/getNum.jpg" width="10%" style="margin:20px;"></img>
+<img src="./img/reword.jpg" width="10%" style="margin:20px;"></img>
+</div>
+
+#### 大屏
+
+<div style="display:flex;align-item:center;flex-wrap:wrap;">
+<img src="./img/pc1.png" width="30%" style="margin:20px;"></img>
+<img src="./img/pc2.png" width="30%" style="margin:20px;"></img>
+<img src="./img/pc4.png" width="30%" style="margin:20px;"></img>
+<img src="./img/pc5.png" width="30%" style="margin:20px;"></img>
+</div>
 
 ## 微信端（front）
 
@@ -115,3 +143,16 @@ systemctl status wedding
 ```shell
 systemctl enable wedding
 ```
+
+## 如对您产生了帮助请赞赏我，一分钱也是爱
+
+<img src="./img/zs.png" width="20%" style="margin:20px;"></img>
+
+## 如需定制开发可以联系我
+
+<img src="./img/wechat.png" width="20%" style="margin:20px;"></img>
+
+## 附上完整邀请函截图
+
+
+<img src="./img/邀请函.png" width="50%" style="margin:20px;"></img>

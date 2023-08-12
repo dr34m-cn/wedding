@@ -27,7 +27,7 @@ CREATE TABLE `conf`  (
 -- ----------------------------
 -- Records of conf
 -- ----------------------------
-INSERT INTO `conf` VALUES (1, 0, 'xxxxx', 'xxxxx');
+INSERT INTO `conf` VALUES (1, 0, 'xxxwechat', 'xxxfront');
 
 -- ----------------------------
 -- Table structure for userList
