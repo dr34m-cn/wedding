@@ -57,7 +57,7 @@ npm run serve
 
 ### 修改配置
 
-项目根目录新建`conf.json`文件，并修改如下
+server项目根目录`conf-example.json`改名为`conf.json`，并修改如下
 
 ```shell
 vim conf.json
