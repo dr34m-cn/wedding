@@ -88,8 +88,8 @@ vim conf.json
 ### 安装依赖
 
 ```shell
-python3 -m pip install --upgrade pip -i https://pypi.doubanio.com/simple/
-pip3 install -r requirements.txt -i https://pypi.doubanio.com/simple/
+python3 -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 ### 运行
