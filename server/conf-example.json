@@ -1,0 +1,17 @@
+{
+    "server": {
+        "port": 9014,
+        "thread": 10
+    },
+    "mysql": {
+        "host": "127.0.0.1",
+        "port": 3306,
+        "db": "wedding",
+        "user": "root",
+        "passwd": "root"
+    },
+    "wechat": {
+        "appId": "xxxxx",
+        "AppSecret": "xxxxx"
+    }
+}

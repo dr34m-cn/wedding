@@ -57,7 +57,7 @@ npm run serve
 
 ### 修改配置
 
-项目根目录新建`conf.json`文件，并修改如下
+server项目根目录`conf-example.json`改名为`conf.json`，并修改如下
 
 ```shell
 vim conf.json
@@ -88,8 +88,8 @@ vim conf.json
 ### 安装依赖
 
 ```shell
-python3 -m pip install --upgrade pip -i https://pypi.doubanio.com/simple/
-pip3 install -r requirements.txt -i https://pypi.doubanio.com/simple/
+python3 -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 ### 运行
